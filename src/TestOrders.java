@@ -24,5 +24,9 @@ public class TestOrders {
     anvil.computeTax();
     balloons.computeTax();
 
+    MyDate date3 = new MyDate(5, 20, 2008);
+    Order anotherAnvil = new Order(date3, 200, "Road Runner");
+    System.out.println(anotherAnvil);
+
   }
 }

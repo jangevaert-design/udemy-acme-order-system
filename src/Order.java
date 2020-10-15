@@ -7,14 +7,27 @@ public class Order {
   String product;
   int quantity;
 
-  static double taxRate = 0.05;
+  static double taxRate;
+
+  static {
+    taxRate = 0.05;
+  }
+
+  public Order(MyDate d, double amt, String c) {
+    orderDate = d;
+    orderAmount = amt;
+    customer = c;
+    product = "Anvil";
+    quantity = 1;
+
+  }
 
   public Order(MyDate d, double amt, String c, String p, int q){
-    orderDate=d;
-    orderAmount=amt;
-    customer=c;
-    product=p;
-    quantity=q;
+    this.orderDate = d;
+    this.orderAmount = amt;
+    this.customer = c;
+    this.product = p;
+    this.quantity = q;
   }
 
   public double computeTax() {
