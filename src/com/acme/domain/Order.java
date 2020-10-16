@@ -1,4 +1,6 @@
-//import org.graalvm.compiler.core.common.type.ArithmeticOpTable.BinaryOp.Or;
+package com.acme.domain;//import org.graalvm.compiler.core.common.type.ArithmeticOpTable.BinaryOp.Or;
+
+import com.acme.utils.MyDate;
 
 public class Order {
   MyDate orderDate;
@@ -7,7 +9,7 @@ public class Order {
   String product;
   int quantity;
 
-  static double taxRate;
+  public static double taxRate;
 
   static {
     taxRate = 0.05;
