@@ -23,4 +23,12 @@ public class MyDate {
     month = m;
   }
 
+  public static void leapYears() {
+    for (int i = 1752; i <= 2020; i += 4) {
+      if ((i % 100 != 0) || (i % 400 == 0)) {
+        System.out.println("The year " + i + " is a leap year.");
+      }
+    }
+  }
+
 }
