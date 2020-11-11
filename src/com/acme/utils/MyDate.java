@@ -83,4 +83,14 @@ public class MyDate {
     return true;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (o instanceof MyDate) {
+      MyDate d = (MyDate) o;
+      if ((d.day == day) && (d.month == month) && (d.year == year)) {
+        return true;
+      }
+    }
+    return false;
+  }
 }
