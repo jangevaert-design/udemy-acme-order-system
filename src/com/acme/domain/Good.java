@@ -1,6 +1,6 @@
 package com.acme.domain;
 
-public class Good {
+public abstract class Good implements Product {
 
   public enum  UnitOfMeasureType {
     LITER, GALLON, CUBIC_METER, CUBIC_FEET
@@ -74,9 +74,7 @@ public class Good {
     return name + "-" + modelNumber;
   }
 
-  public double volume() {
-    return 0.0;
-  }
+  public abstract double volume();
 
   public double weight() {
     return volume() * weightPerUofM;

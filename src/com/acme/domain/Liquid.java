@@ -1,5 +1,7 @@
 package com.acme.domain;
 
+import org.w3c.dom.ls.LSOutput;
+
 public class Liquid extends Good {
 
   private double radius;
