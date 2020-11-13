@@ -4,6 +4,16 @@ import com.acme.utils.MyDate;
 
 public class Order {
 
+  private static Rushable rushable;
+
+  public static Rushable getRushable() {
+    return rushable;
+  }
+
+  public static void setRushable(Rushable rushable) {
+    Order.rushable = rushable;
+  }
+
   private MyDate orderDate;
   private double orderAmount = 0.00;
   private String customer;
@@ -119,6 +129,14 @@ public class Order {
       total = total + computeTax();
     }
     return total;
+  }
+
+  public boolean isPriorityOrder() {
+    boolean priorityOrder = false;
+    if (rushable != null) {
+      priorityOrder = rushable.isRushable(orderDate, orderAmount);
+    }
+    return priorityOrder;
   }
 
 }
