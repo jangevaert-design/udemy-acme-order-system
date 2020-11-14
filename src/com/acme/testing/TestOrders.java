@@ -6,6 +6,7 @@ import com.acme.domain.Order;
 import com.acme.domain.Service;
 import com.acme.domain.Solid;
 import com.acme.utils.MyDate;
+import java.time.LocalDate;
 
 public class TestOrders {
 
@@ -50,6 +51,20 @@ public class TestOrders {
     Order birdEradication = new Order(date3, 20000, "Daffy Duck", s3, 1);
     System.out.println("The total bill for: " + birdEradication
         + " is " + birdEradication.computeTotal());
+
+    MyDate hammerDate = new MyDate(5, 17, 2006);
+    Solid hammerType = new Solid("Acme Hammer", 281, 0.3, UnitOfMeasureType.CUBIC_METER, false, 100, 0.25, 0.3);
+    Order hammer = new Order(hammerDate, 10.00, "Wile E Coyote", hammerType, 10);
+
+    Order.setRushable(((orderDate, OrderAmount) -> {
+      LocalDate now = LocalDate.now();
+      LocalDate orderDatePlus30 = LocalDate.of(orderDate.getYear(), orderDate.getMonth(), orderDate.getDay());
+      orderDatePlus30 = orderDatePlus30.plusMonths(1);
+      return now.isAfter(orderDatePlus30);
+    }));
+
+    System.out.println("Anvil isPriorityOrder: " + anvil.isPriorityOrder());
+    System.out.println("Hammer isPriorityOrder: " + hammer.isPriorityOrder());
 
     Order.setRushable((orderDate, orderAmount) -> orderAmount > 1_500);
     System.out.println("Anvil isPriorityOrder: " + anvil.isPriorityOrder());
