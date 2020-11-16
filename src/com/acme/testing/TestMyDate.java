@@ -32,6 +32,8 @@ public class TestMyDate {
     System.out.println(str3);
 
     MyDate.leapYears();
+
+    MyDate.listHolidays();
   }
 
 }
