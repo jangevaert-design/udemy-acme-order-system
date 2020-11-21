@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-public abstract class Good implements Product {
+public abstract class Good implements Product, Comparable<Good> {
 
   public enum  UnitOfMeasureType {
     LITER, GALLON, CUBIC_METER, CUBIC_FEET
@@ -19,9 +19,9 @@ public abstract class Good implements Product {
   private boolean flammable = true;
   private double weightPerUofM;
 
-  private static List catalog;
+  private static List<Good> catalog;
 
-  public static List getCatalog() {
+  public static List<Good> getCatalog() {
     return catalog;
   }
 
@@ -35,7 +35,7 @@ public abstract class Good implements Product {
     Liquid nitro = new Liquid("Acme Nitroglycerin", 4289, 1.0,UnitOfMeasureType.CUBIC_METER, true, 1.5, 0.25);
     Liquid oil = new Liquid("Acme Oil", 4275, 1.0,UnitOfMeasureType.CUBIC_METER, true, 1.5, 0.25);
 
-    catalog = new ArrayList();
+    catalog = new ArrayList<Good>();
     catalog.add(glue);
     catalog.add(paint);
     catalog.add(anvil);
@@ -113,15 +113,19 @@ public abstract class Good implements Product {
     return volume() * weightPerUofM;
   }
 
-  public static Set flammableList() {
-    Set flammables = new HashSet();
-    Iterator i = Good.getCatalog().iterator();
+  public static Set<Good> flammableList() {
+    Set<Good> flammables = new HashSet<Good>();
+    Iterator<Good> i = Good.getCatalog().iterator();
     while (i.hasNext()) {
-      Good x = (Good) i.next();
+      Good x = i.next();
       if (x.isFlammable()) {
         flammables.add(x);
       }
     }
     return flammables;
+  }
+
+  public int compareTo(Good o) {
+    return getName().compareTo(o.getName());
   }
 }
